@@ -1,6 +1,6 @@
 {
-  "name": "glitch-website-project",
-  "version": "0.1.1",
+  "name": "amrita-trees-project",
+  "version": "1.0.0",
   "description": "A Node app with SQLite database, instantly up and running.",
   "main": "server.js",
   "scripts": {
@@ -14,9 +14,7 @@
     "@fastify/view": "^8.0.0",
     "axios": "^1.6.0",
     "fastify": "^4.21.0",
-    "fastify-socket.io": "^4.0.0",
     "handlebars": "^4.7.8",
-    "socket.io": "^4.7.2",
     "sqlite": "^5.0.1",
     "sqlite3": "^5.1.6"
   },
