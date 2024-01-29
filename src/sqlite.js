@@ -15,20 +15,17 @@ We're using the sqlite wrapper so that we can make async / await connections
 dbWrapper
   .open({
     filename: dbFile,
-    driver: sqlite3.Database
+    driver: sqlite3.Database,
   })
-  .then(async dBase => {
+  .then(async (dBase) => {
     db = dBase;
 
     try {
       if (!exists) {
-        
-        console.log("db doesnt exist")
+        console.log("db doesnt exist");
         await db.run("CREATE TABLE Members (socketid TEXT, username TEXT)");
-
       } else {
-        
-        console.log("db exists")
+        console.log("db exists");
         await db.run("DELETE FROM Members");
       }
     } catch (dbError) {
@@ -38,7 +35,6 @@ dbWrapper
 
 // Our server script will call these methods to connect to the db
 module.exports = {
-
   /**
    * Process a user vote
    *
@@ -47,21 +43,29 @@ module.exports = {
    * Find and update the chosen option
    * Return the updated list of votes
    */
-  processVote: async vote => {
+  processVote: async (vote) => {
     // Insert new Log table entry indicating the user choice and timestamp
     try {
       // Check the vote is valid
-      const option = await db.all("SELECT * from Choices WHERE language = ?",vote);
+      const option = await db.all(
+        "SELECT * from Choices WHERE language = ?",
+        vote
+      );
       if (option.length > 0) {
         // Build the user data from the front-end and the current time into the sql query
-        await db.run("INSERT INTO Log (choice, time) VALUES (?, ?)", [vote,new Date().toISOString()]);
+        await db.run("INSERT INTO Log (choice, time) VALUES (?, ?)", [
+          vote,
+          new Date().toISOString(),
+        ]);
         // Update the number of times the choice has been picked by adding one to it
-        await db.run("UPDATE Choices SET picks = picks + 1 WHERE language = ?",vote);
+        await db.run(
+          "UPDATE Choices SET picks = picks + 1 WHERE language = ?",
+          vote
+        );
       }
 
       // Return the choices so far - page will build these into a chart
       return await db.all("SELECT * from Choices");
-
     } catch (dbError) {
       console.error(dbError);
     }
@@ -77,7 +81,10 @@ module.exports = {
 
   addMember: async (socketid, username) => {
     try {
-      await db.run("INSERT INTO Members (socketid, username) VALUES (?, ?)", [socketid, username])
+      await db.run("INSERT INTO Members (socketid, username) VALUES (?, ?)", [
+        socketid,
+        username,
+      ]);
     } catch (dbError) {
       console.error(dbError);
     }
@@ -85,26 +92,23 @@ module.exports = {
 
   deleteMember: async (socketid) => {
     try {
-      await db.run("DELETE FROM Members where socketid=?", [socketid])
+      await db.run("DELETE FROM Members where socketid=?", [socketid]);
     } catch (dbError) {
       console.error(dbError);
     }
   },
-  
+
   clearMembers: async () => {
     try {
-      await db.run("DELETE FROM Members", [])
+      await db.run("DELETE FROM Members", []);
     } catch (dbError) {
       // output removed because it causes error
       // even though it works fine, it might be
-      // caused by an already empty table, not 
+      // caused by an already empty table, not
       // sure
       console.error();
     }
   },
-
-
-
 
   // runQuery1: async (q) => {
   //   try {
