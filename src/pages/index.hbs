@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/134/134932.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+  <title>{{seo.title}}</title>
+
+  <!-- Meta tags for SEO and social sharing -->
+  <link rel="canonical" href="{{seo.url}}">
+  <meta name="description" content="{{seo.description}}">
+  <meta property="og:title" content="{{seo.title}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{seo.url}}">
+  <meta property="og:description" content="{{seo.description}}">
+  <meta property="og:image" content="{{seo.image}}">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/css/style0.css" />
+  <link rel="stylesheet" href="/css/chat0.css" />
+  <link rel="stylesheet" href="/css/overlay0.css" />
+  <link rel="stylesheet" href="/css/draw0.css" />
+
+  {{!-- <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/chat.css" />
+  <link rel="stylesheet" href="/css/overlay.css" />
+  <link rel="stylesheet" href="/css/draw.css" /> --}}
+
+  <link rel="stylesheet" href="/module/reinvented-color-wheel.css">
+
+  <script>function $(x){return document.querySelector(x);}</script>
+  <script type="module" src="/js/utils.js"></script>
+  <script type="module" src="/js/authorization.js"></script>
+  <script type="module" src="/js/chatscript.js"></script>
+  <script type="module" src="/js/sidebarscript.js"></script>
+  <script type="module" src="/js/socketClient.js"></script>
+
+  <script type="module" src="/js/frameState.js"></script>
+  <script type="module" src="/js/globalscript.js"></script>
+  <script type="module" src="/js/drawscript.js"></script>
+  <script type="module" src="/js/videoscript.js"></script>
+
+  <script type="module" src="/module/reinvented-color-wheel.js"></script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="sidebarLeft">
+      <span class="title noSelect">Channels</span>
+      <ul>
+      </ul>
+      <div class="profile noSelect">
+        <div>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_v437iy1U9932C6L6Jzi8HBjgbzH4huC6rA&usqp=CAU">
+          <div class="usernameDisplay">...</div>
+        </div>
+      </div>
+    </div>
+    <main data-state="default">
+      <header class="mainheader noSelect">
+        <span class="menu" id="menuBtn">🍔</span>
+        <span style="translate: 0 5px;">°°°</span>
+        <span class="users" id="usersBtn">👥</span>
+      </header>
+      
+      <div class="maincontent">
+        <div class="mountContainer"></div>
+        <div id="chatlogs">
+        </div>
+      </div>
+
+      <footer class="mainfooter">
+        <div class="chatindication">
+          <span class="loadingCircles"></span>
+          <span class="indicationLabel"></span>
+        </div>
+        <div class="userinput">
+          
+          <div id="widget" class="noSelect">
+            😋
+            <dialog class="widgetDialog">
+              <div>🚀</div>
+              <div>🔦</div>
+              <div>📸</div>
+              <button id="devCheck">DEV</button>
+            </dialog>
+          </div>
+
+          <div id="textarea" contenteditable="true" spellcheck="false"></div>
+          
+          <div id="send" class="noSelect">🚀</div>
+
+        </div>
+      </footer>
+
+      <div class="overlayFrame hide"></div>
+      <div class="overlayChatWindow hide">
+        <div class="overlayHeader">
+        <span class="expandOchannels noSelect">🍔</span>
+        <span style="translate: 0 5px;">°°°</span>
+        <span class="expandOmembers noSelect">👥</span>
+        </div>
+        
+        <div class="overlayChatlogs">
+        </div>
+        
+        <div class="overlayFooter">
+
+          <div class="userinput">
+            
+            <div class="closechat" class="noSelect"><span class="closechatWrapper">❎</span></div>
+            <div class="textarea" contenteditable="true" spellcheck="false"></div>
+            <div class="send" class="noSelect">🚀</div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+    <div class="sidebarRight">
+      <span class="title noSelect">Members</span>
+      <ul>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <dialog id="authModal">
+    <h1>Login</h1>
+    <form spellcheck="off">
+      <label>
+        Username:
+        <input type="text" name="username" autocomplete="off">
+      </label>
+
+      <label>
+        Passcode:
+        <input type="password" name="password">
+      </label>
+
+      <button>submit</button>
+    </form>
+  </dialog>
+
+  <dialog id="profileModal">
+    <h1>
+      Edit Profile
+      <span class="modalClose noSelect">❎</span>
+    </h1>
+    <form>
+
+      <div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_v437iy1U9932C6L6Jzi8HBjgbzH4huC6rA&usqp=CAU">
+        <h2>...</h2>
+      </div>
+
+      <label>
+        Username:
+        <input type="text" name="username" autocomplete="off">
+      </label>
+
+      <label>
+        Profile URL:
+        <input type="text" name="pfpurl" autocomplete="off">
+      </label>
+
+      <button>submit</button>
+    </form>
+  </dialog>
+
+  <dialog id="userMessageModal" class="noSelect">
+    <div class="messageView"></div>
+    <div class="reactions">
+      <span>👍</span>
+      <span>👎</span>
+      <span>❤️</span>
+      <span>🤣</span>
+      <span>😮</span>
+      <span>😢</span>
+      <span>🙏</span>
+    </div>
+    <div class="optionsArray">
+      <div class="replyMsg msgInteractOpts">reply</div>
+      <div class="copyMsg msgInteractOpts">copy</div>
+      <div class="breakMsg msgInteractOpts">break</div>
+    </div>
+  </dialog>
+
+  <dialog id="drawModal" class="noSelect">
+    <div class="contents"></div>
+    <div class="close">
+      <span class="closeDrawModal">❎</span>
+    </div>
+  </dialog>
+
+  <div id="loaderContainer">
+    <div class="loader"></div>
+  </div>
+</body>
+
+</html>
