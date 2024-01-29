@@ -1,0 +1,29 @@
+{
+  "name": "amrita-trees",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nandhu9999/amrita-trees.git"
+  },
+  "author": "Nandhakumar V L",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nandhu9999/amrita-trees/issues"
+  },
+  "homepage": "https://github.com/Nandhu9999/amrita-trees#readme",
+  "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/session": "^10.7.0",
+    "@fastify/static": "^6.12.0",
+    "fastify": "^4.25.2",
+    "handlebars": "^4.7.8",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}
