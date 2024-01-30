@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  {{> head }}
+  
+  <title>Amrita Trees: Game</title>
+  <link rel="stylesheet" href="/css/zStyle.css">
+  <link rel="stylesheet" href="/css/zGame.css">
+  <link rel="stylesheet" href="/css/zNavbar.css">
+  <link rel="stylesheet" href="/css/zInvbar.css">
+  <link rel="stylesheet" href="/css/zMarker.css">
+  <link rel="stylesheet" href="/css/zSidebar.css">
+  <link rel="stylesheet" href="/css/switch.css">
+  
+  <script src="/js/app.js" defer></script>
+  <script src="/js/sidebar.js" defer></script>
+  <script src="/js/invbar.js" defer></script>
+  <script src="/js/markertag.js" defer></script>
+  
+  
+</head>
+<body id="body">
+  
+  <div id="container">
+    
+    {{> navbar }}
+    
+    {{> sidebar }}
+    <div id="overlay" onclick="clickedOverlay()"></div>
+    
+    <div id="mapContainer"><div id="map"></div></div>
+    
+    {{> invbar }}
+    
+    {{> marker_prompt }}
+    
+    <div id="containerSquare"></div>
+    
+  </div>
+  
+</body>
+<script src="/js/game.js"></script>
+<!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA554gL9cKaa3KqhS8biWu9p9eDCn31z0Q&callback=initMap"></script> -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnNTv83W7n9Yx6TBb8Yc5UTHk2ZtZfDVo&callback=initMap"></script>
+<script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+  
+<script>
+
+function confetti(){
+  party.confetti( document.body,{
+    /**
+     * Whether the debugging mode should be enabled.
+     */
+    debug: false,
+    /**
+     * The amount of gravity to apply to particles in the scene, in pixels.
+     * Note that this value is positive by default, since the y-axis increases
+     * downwards in a DOM.
+     */
+    gravity: 800,
+    /**
+     * The z-index to place the DOM containers at.
+     */
+    zIndex: 99999,
+    count: party.variation.range(50, 80),
+  });
+  
+}
+  
+const bird_url = "https://cdn.discordapp.com/attachments/1027927070191403189/1053936660582236240/bird_transparent.png";
+function bird(){
+  const span = document.createElement("span")
+  span.classList = "bird";
+  span.style.backgroundImage = `url(${bird_url})`;
+  
+  let maximum = 90;
+  let minimum = 10;
+  
+  const y1 = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+  const y2 = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+  console.log(y1+"%",y2+"%")
+  
+    const deg = angle_and_distance(110,y1,-10,y2)
+    console.log(deg)
+  
+    span.style.setProperty("--direction",deg+"deg");
+  
+//   span.style.setProperty("--x1", "110%");
+  span.style.setProperty("--y1", y1 + "%");
+  
+//   span.style.setProperty("--x2", "-10%");
+  span.style.setProperty("--y2", y2 + "%");
+  
+  
+    $("#container").appendChild(span);
+    // setTimeout( ()=>{span.remove();},5000);
+  
+}
+const birdSound = new Audio("https://cdn.discordapp.com/attachments/1055426492659675167/1055755009557549078/bird.wav")
+const callBird = ()=>{
+  bird();
+  if ($("#soundCB").checked) birdSound.play()
+  setTimeout(callBird,Math.floor(Math.random() * 1000 * 60 * 3) );
+}
+
+setTimeout(callBird,Math.floor(Math.random() * 1000* 60 * 1) );
+
+function angle_and_distance(cx, cy, ex, ey) {
+  var dy = ey - cy;
+  var dx = ex - cx;
+  var distance = Math.sqrt( dx*dx + dy*dy );
+  var theta = Math.atan2(dy, dx); // range (-PI, PI]
+  theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+  theta += 90; // So, 0 starts from Top Middle
+  if (theta < 0) theta = 360 + theta; // range [0, 360)
+  return theta
+}
+</script>
+  
+</html>

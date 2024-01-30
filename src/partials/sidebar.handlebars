@@ -1,0 +1,147 @@
+<div id="sidebar" class="noSelect">
+  <div class="profile">
+    <h1 style="padding-left:10px;font-size: 1.4rem;text-transform: uppercase;">
+      <!-- <span></span> -->
+      profile
+      <!-- <span></span> -->
+    </h1>
+    <div class="profileDiv">
+      <div><img
+          src="https://as2.ftcdn.net/v2/jpg/03/49/49/79/1000_F_349497933_Ly4im8BDmHLaLzgyKg2f2yZOvJjBtlw5.jpg"
+          width="80%"
+          style="border-radius:50%;border:solid 3px white;"
+        /></div>
+      <div style="width:100%;overflow:hidden;"><span
+          style="font-size:0.9rem;"
+        >{{user.username}}</span></div>
+      <div style="width:100%;overflow:hidden;"><img
+          src="https://cdn.discordapp.com/attachments/1027927070191403189/1055240437943779408/mapel_points.jpg"
+          height="38px"
+          width="38px"
+          style="mix-blend-mode: color-dodge;"
+        />
+        <span class="pointsSpan">{{user.points}}</span></div>
+    </div>
+
+    <div class="defaultOptions">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(5px);"
+        >leaderboard</span><a
+          href="./leaderboards"
+          style="text-decoration: none;color:inherit"
+        > Leaderboards</a></div>
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(6px);"
+        >speaker_notes</span><a
+          href="https://discord.gg/XfCeHd8KX8"
+          target="_blank"
+          style="text-decoration: none;color:inherit"
+        > Join Our Discord!</a></div>
+      <!--         <div><span class="material-symbols-rounded" style="transform:translateY(5px);">help</span> How to Play</div> -->
+    </div>
+  </div>
+
+  <div class="project_problem">
+    <h1><span></span>problem<span></span></h1>
+    <a href="/repository" class="golden"></a>
+  </div>
+
+  <div class="settings">
+    <h1><span></span>settings<span></span></h1>
+    <div class="toggleable">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >volume_up</span>
+        Sounds</div>
+      <div>
+        <label class="switch">
+          <input
+            id="soundCB"
+            type="checkbox"
+            checked
+            onclick="toggleSwitchClicked()"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <hr />
+    <div class="toggleable">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >notifications</span>
+        Notifications</div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" onclick="toggleSwitchClicked()" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <hr />
+
+    <div class="toggleable">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >person_pin_circle</span>
+        Live Location</div>
+      <div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            checked
+            id="livelocationCB"
+            onclick="toggleSwitchClicked()"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <hr />
+
+    <div class="toggleable">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >my_location</span>
+        dev</div>
+      <div>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="devCB"
+            checked
+            onclick="toggleSwitchClicked()"
+          />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <hr />
+
+    <div>
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >info</span><a href="./" style="text-decoration: none;color:inherit">
+          About our app</a></div>
+    </div>
+    <hr />
+    <div class="toggleable">
+      <div><span
+          class="material-symbols-rounded"
+          style="transform:translateY(3px);"
+        >power_rounded</span><a
+          href="./logout"
+          style="text-decoration: none;color:inherit"
+        > Logout</a></div>
+    </div>
+    <hr />
+  </div>
+
+</div>

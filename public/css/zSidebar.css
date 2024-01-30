@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Niconne");
+
+#overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#sidebar {
+  --sidebarWidth: 275px;
+
+  position: absolute;
+  z-index: 4;
+  height: 100%;
+  overflow-y: auto;
+
+  width: var(--sidebarWidth);
+  top: 0;
+  left: calc(-1 * var(--sidebarWidth));
+
+  display: grid;
+  grid-template-rows: min-content 5.3rem auto;
+  row-gap: 25px;
+
+  /*   background-color: #2c2e2e; */
+  background-image: linear-gradient(-45deg, #323232, #646464, #242424);
+  padding: 5px;
+  padding-top: 15px;
+
+  transition: all 0.2s;
+}
+#sidebar::-webkit-scrollbar {
+  width: 1px;
+}
+#sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+#sidebar::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+#sidebar.active {
+  transform: translateX(0);
+  left: 0;
+}
+
+#sidebar .settings h1,
+#sidebar .profile h1,
+#sidebar .project_problem h1 {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  grid-template-columns: auto min-content auto;
+  gap: 10px;
+
+  text-transform: capitalize;
+  font-size: 1.3rem;
+}
+
+#sidebar .settings h1 span,
+#sidebar .profile h1 span,
+#sidebar .project_problem span {
+  background-color: white;
+  height: 0.5px;
+  border-radius: 25px;
+}
+
+#sidebar .profileDiv {
+  --profileHeight: 100px;
+  display: grid;
+  height: var(--profileHeight);
+  grid-template-columns: var(--profileHeight) auto;
+  grid-template-areas:
+    "pfp name"
+    "pfp points";
+
+  font-family: "Press Start 2P";
+}
+#sidebar .profileDiv div {
+  display: flex;
+}
+#sidebar .profileDiv div:nth-child(1) {
+  grid-area: pfp;
+  align-items: center;
+  justify-content: center;
+}
+#sidebar .profileDiv div:nth-child(2) {
+  grid-area: name;
+  align-items: flex-end;
+  font-size: 1.4rem;
+}
+#sidebar .profileDiv div:nth-child(3) {
+  grid-area: points;
+  font-size: 1.2rem;
+}
+
+#sidebar .defaultOptions {
+  --optionsSize: 1.5rem;
+  /*   height: 110px; */
+  height: 60px;
+  display: grid;
+  align-content: center;
+  grid-template-rows: repeat(2, var(--optionsSize));
+  row-gap: 10px;
+  letter-spacing: 2px;
+
+  padding-left: 15px;
+}
+#sidebar .defaultOptions div {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#sidebar .golden {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  height: 3.5rem;
+  width: 90%;
+  margin-top: 12px;
+  padding: 1em;
+  margin-inline: auto;
+  position: relative;
+
+  color: #9f6c34;
+  background: linear-gradient(25deg, #f9c04d, #fffa7c);
+  text-transform: capitalize;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+  /* font-family:Brush Script MT, Brush Script Std, cursive; */
+  /* font-family: Trebuchet MS, Times, serif; */
+  /* font-family: Tangerine; */
+  font-family: Niconne;
+  border-radius: 35px;
+  border: 2px solid white;
+}
+#sidebar .golden:after {
+  --gap: 7px;
+  content: "repository";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 1px solid black;
+  display: flex;
+  width: calc(100% - var(--gap));
+  height: calc(100% - var(--gap));
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+
+  border-radius: inherit;
+  border: 2px solid black;
+}
+
+#sidebar .settings > div {
+  padding-left: 10px;
+  font-size: 1.4rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#sidebar .settings > div.toggleable {
+  display: grid;
+  grid-template-columns: auto min-content;
+}
+
+.pointsSpan {
+  font-size: 1.5rem;
+  -webkit-text-stroke: 1px #ffb460;
+  transform: translate(0px, 6px);
+}

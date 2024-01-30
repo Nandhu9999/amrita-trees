@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P");
+
+#container .navbar {
+  display: none;
+  --h: 3rem;
+  --m: 5px;
+  height: var(--h);
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: var(--m);
+  left: 0;
+
+  grid-template-columns: var(--h) auto var(--h);
+  padding-left: var(--m);
+  padding-right: var(--m);
+}
+#container .navbar.active {
+  display: grid;
+}
+
+#container .navbar > div > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#container .navbar .iconDiv {
+  background-color: #323232;
+  border-radius: 15px;
+}
+#container .navbar .textDiv {
+  flex-direction: column;
+  font-family: "Press Start 2P";
+  font-size: 1.2rem;
+  color: white;
+}
+#container .navbar .textDiv .day {
+  -webkit-text-stroke: 1px black;
+  padding-bottom: 4px;
+}
+#container .navbar .textDiv .time {
+  font-size: 0.9rem;
+  border: 1px solid white;
+  padding: 3px;
+  border-radius: 15px;
+}
+
+#container .navbar i {
+  font-size: calc(3 * var(--h) / 5);
+}
+
+#actionbar {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 0;
+  width: 100%;
+  max-height: 6rem;
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#actionbar p {
+  font-size: 1.2rem;
+  text-decoration: underline;
+  font-family: monospace;
+  text-align: center;
+  animation: logsDisappear 4s ease-in forwards;
+}
+@keyframes logsDisappear {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -23,10 +23,27 @@ dbWrapper
     try {
       if (!exists) {
         console.log("db doesnt exist");
-        await db.run("CREATE TABLE Members (socketid TEXT, username TEXT)");
+
+        await db.run(
+          "CREATE TABLE Users (uid INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, verified INTEGER DEFAULT 0, username TEXT, password TEXT, session_id TEXT, points INTEGER DEFAULT 0, collected INTEGER DEFAULT 0, lat REAL, lng REAL)"
+        );
+        await db.run(
+          "CREATE TABLE Trees (lid INTEGER PRIMARY KEY AUTOINCREMENT, scientific_name TEXT, coords TEXT)"
+        );
+        await db.run(
+          "CREATE TABLE A_TREE_butes (tree_name TEXT PRIMARY KEY, scientific_name TEXT UNIQUE, origin INTEGER, link TEXT, properties TEXT, points INTEGER DEFAULT 10, url TEXT DEFAULT 'https://cdn.discordapp.com/attachments/1027927070191403189/1039165618617860146/betterTree.png')"
+        );
+        await db.run(
+          "CREATE TABLE Quiz(quiz_id INTEGER PRIMARY KEY, scientific_name TEXT, question TEXT, options TEXT, answer TEXT)"
+        );
+        await db.run(
+          "CREATE TABLE Inventory(username TEXT, scientific_name TEXT)"
+        );
+        await db.run(
+          "CREATE TABLE DisabledTrees(username TEXT, scientific_name TEXT, time INTEGER)"
+        );
       } else {
         console.log("db exists");
-        await db.run("DELETE FROM Members");
       }
     } catch (dbError) {
       console.error(dbError);
@@ -124,4 +141,40 @@ module.exports = {
   //     console.error(dbError);
   //   }
   // }
+
+  getUsers: async (username, password) => {
+    try {
+      if (username == undefined || password == undefined) {
+        return await db.all("SELECT * FROM Users");
+      } else {
+        return await db.all(
+          "SELECT * FROM Users WHERE username = ? AND password = ?",
+          [username, password]
+        );
+      }
+    } catch (dbError) {
+      console.error(dbError);
+    }
+  },
+  getUserWithId: async (uid) => {
+    try {
+      if (uid == undefined) {
+        return {};
+      } else {
+        return (await db.all("SELECT * FROM Users WHERE uid = ?", [uid]))[0];
+      }
+    } catch (dbError) {
+      console.error(dbError);
+    }
+  },
+  addUser: async (name, pswd) => {
+    try {
+      return await db.run(
+        "INSERT INTO Users (username, password) VALUES (? , ?)",
+        [name, pswd]
+      );
+    } catch (dbError) {
+      console.error(dbError);
+    }
+  },
 };

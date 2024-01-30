@@ -1,0 +1,49 @@
+<nav class="navbar noSelect active">
+  <!--       <div style="padding-left:10px;cursor:pointer;" onclick="toggleSidebar()" class="iconContainer">
+        <i class="fas fa-bars" title="menu"></i>
+      </div>
+      
+      <div class="iconContainer" style="font-size:x-large;"></div>
+      
+      <div style="padding-right:10px;">
+        <div style="padding-left:10px;cursor:pointer;" onclick="bellClicked(this)" class="iconContainer" id="bell">
+          <i class="fas fa-bell" title="notifications"></i></div>
+        <div style="padding-left:10px;cursor:pointer;" onclick="questsClicked(this)" class="iconContainer" id="quest">
+          <i class="fas fa-scroll" title="quests"></i></div>
+      </div> -->
+
+  <div>
+    <div class="iconDiv" onclick="toggleSidebar()"><i
+        class="fas fa-bars"
+        title="menu"
+      ></i></div>
+  </div>
+
+  <div>
+    <div class="textDiv">
+
+      <p class="day"></p>
+      <p class="time">
+        <span class="hrs"></span><span
+          style="animation:blink 1s cubic-bezier(.99, 0, 0, .99) infinite;"
+        >:</span><span class="mins"></span>
+      </p>
+
+    </div>
+  </div>
+
+  <div style="position:relative;">
+    <div class="iconDiv" onclick="toggleInventorybar()"><i
+        class="fas fa-backpack"
+        title="inventory"
+      ></i></div>
+    <div
+      class="iconDiv"
+      onclick="addMarkerTag()"
+      style="position:absolute;right:0px;top:calc(100% + 5px);"
+    ><i class="fas fa-thumbtack" title="add new tag"></i></div>
+  </div>
+
+  <div id="actionbar"></div>
+
+</nav>

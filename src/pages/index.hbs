@@ -2,37 +2,222 @@
 
   <head>
 
-    <meta charset="utf-8" />
-    <link rel="icon" href="/assets/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
-
+    {{> head }}
     <title>{{seo.title}}</title>
-
-    <!-- Meta tags for SEO and social sharing -->
-    <link rel="canonical" href="{{seo.url}}" />
-    <meta name="description" content="{{seo.description}}" />
-    <meta property="og:title" content="{{seo.title}}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="{{seo.url}}" />
-    <meta property="og:description" content="{{seo.description}}" />
-    <meta property="og:image" content="{{seo.image}}" />
-    <meta name="twitter:card" content="summary" />
 
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="/css/style.css" />
-    <script>function $(x){return document.querySelector(x);}</script>
-    <script type="module" src="/js/script.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend Deca" rel="stylesheet">
+    <script src="/js/app.js" defer></script>
+
+<style>
+
+body{
+  width:100%;
+  height:100%;
+  background-image:linear-gradient(-45deg,#9cfaad,#42d7a9,#00a59e);
+  font-family: 'Lexend Deca', sans-serif; 
+}
+
+.container{
+  width:100%;
+  height:calc(100% - 3rem);
+  position:relative;
+  background-image:url("https://www.onlygfx.com/wp-content/uploads/2019/06/6-leaf-pattern-3-1.png");
+  background-repeat: repeat;
+  background-size:170px;
+  
+  display:flex;
+  flex-direction: column;
+}
+
+nav{
+  display:flex;
+  width:100%;
+  height:3rem;
+  background-image: linear-gradient(60deg, #242424,#474747);
+  
+    justify-content: space-between;
+    align-items: center;
+  
+  padding-right:5px;
+  
+  box-shadow:0px 5px 5px rgba(0,0,0,0.5);
+}
+  
+nav div.btn{
+  height:2.5rem;
+  background-color:white;
+  color:black;
+  border-radius:15px;
+  border:3px solid yellowgreen;
+  transition:all .2s;
+}
+nav div.btn a{
+  padding:.5em;
+  height:100%;
+  width:100%;
+  display:block;
+  
+  text-decoration:none;
+  color:yellowgreen;
+  font-weight:550;
+}
+
+nav div.btn:hover{
+  transition:all .2s;
+  border-radius:15px;
+  background-color:transparent;
+}
+
+body .container{
+  --sidePadding:10px;
+  padding:15px;
+/*   margin: 15px; */
+/*   margin-left: 15px;
+  margin-right: 15px; */
+  min-height:50%;
+  padding-left: var(--sidePadding);
+  padding-right: var(--sidePadding);
+/*   overflow:scroll; */
+/*   height:400px; */
+  overflow-y: scroll;
+}
+.container::-webkit-scrollbar{width:4px;}
+.container::-webkit-scrollbar-track {background: transparent;}
+.container::-webkit-scrollbar-thumb {background: #323232;}
+  
+.container > div{
+  margin-bottom:15px;
+  background-color: rgba(36,50,37,.5);
+  color:white
+  border-radius:15px;
+  padding:15px;
+}
+  
+.container > div.half{
+  width:50%;
+}
+</style>
+<style>
+  
+.titleP:after{
+  content: "Who doesn’t love trees?";
+  position:absolute;
+  top:75px;left:50%;
+  width:200px;
+  transform:translate(-50%,0);
+  font-size:2rem;
+  font-family: 'Lexend Deca', sans-serif;
+  color: var(--titleColor);
+}
+.titleP{
+  --titleColor: white;
+  position:relative;
+  font-size:3rem !important;
+}
+
+  .text_img div img{
+    border-radius:15px;
+  }
+  .text_img div p{
+    font-size:1.2rem;
+    font-weight:600;
+  }
+  
+    @media screen and (min-width: 800px) {
+        #main_div{
+        background-color: rgba(0, 255, 0, 0.29);
+        }
+        #a{
+            margin-bottom: 30px; 
+            width: 100%; height: auto; 
+            background-color: rgba(255, 208, 0, 0.407); 
+            display: flex; 
+            align-items: center;
+            /* justify-content: center;  */
+            flex-direction: row;
+        }
+        .text_img{
+            margin-bottom: 30px; 
+            width: 100%; height: auto; 
+            background-color: rgba(255, 208, 0, 0.407); 
+            display: flex; 
+            align-items: center; 
+            /* justify-content: center;  */
+            flex-direction: row;
+        }
+        #aaa{
+            margin-bottom: 30px; 
+            width: 100%; height: auto; 
+            background-color: rgba(255, 208, 0, 0.407); 
+            display: flex; 
+            align-items: center; 
+            /* justify-content: center;  */
+            flex-direction: row;
+        }
+    }
+  
+    @media screen and (max-width: 600px){
+      .titleP{
+        --titleColor: white;
+      }  
+    }
+</style>
 
   </head>
 
   <body>
-    <div id="container">
-      hello
-    </div>
+      <nav>
+        <div
+          style="height:100%;display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:700;"
+          class="noSelect"
+        >
+          <img src="/assets/favicon.png" style="height:100%;" />
+          AMRITA TREES
+        </div>
+
+        <div style="display: flex;gap: 5px;">
+          <div class="btn"><a href="/login">{{loginBtn}}</a></div>
+          <div class="btn"><a href="/{{signIn.url}}">{{signIn.msg}}</a></div>
+        </div>
+
+      </nav>
+
+      <div class="container" id="main_div">
+<!--       <img src="https://intranet.cb.amrita.edu/sites/default/files/Intranet-Logo_1.png" style="width:100%;"> -->
+    
+        <div class="text_img">
+            <div id="one" style="width: 100%; height: auto; padding: 0px; margin: 0px; text-align: center; display: flex; justify-content: space-around;"> <p class="titleP"> Trees </p></div>
+            <div id="two" style="height: auto; width: 100%;"><img src="https://cdn.discordapp.com/attachments/1027927070191403189/1055727363486384148/trees500.png" alt="image not found" style="max-width: 100%;"></div>
+            
+        </div>
+    
+        <div class="text_img">
+            <div id="three" style="height: auto; width: 100%;"><img src="https://cdn.discordapp.com/attachments/1027927070191403189/1055728719894958160/campus400.png" alt="image not found" style="max-width: 100%;"></div>
+            <div id="four" style="width: 100%; height: auto; padding: 0px; margin: 0px; text-align: center; display: flex; justify-content: space-around;"><p>Trees are a big part of our lives, and Amrita is full of them. This is an interactive online repository of all the trees, our contribution to one of the best things about this campus.</p></div>
+            
+        </div>
+    
+    
+        <div class="text_img">
+            <div id="five" style="width: 100%; height: auto; padding: 0px; margin: 0px; text-align: center; display: flex; justify-content: space-around;"><p>But that's not all, join the hunt in unlocking trees by finding them and answering a short quiz. Unlocking a tree gives you points, which can be redeemed for prizes. Explore the campus and enjoy the biodiversity it offers.</p></div>
+            <div id="six" style="height: auto; width: 100%;"><img src="https://cdn.discordapp.com/attachments/1027927070191403189/1055731667463045130/3rd_photo.png" alt="image not found" style="max-width: 100%;"></div>
+            
+        </div>
+
+            <div class="text_img">
+            <div id="seven" style="height: auto; width: 100%;"><img src="https://cdn.discordapp.com/attachments/1027927070191403189/1055732386362568756/game.png" alt="image not found" style="max-width: 100%;"></div>
+            <div id="eight" style="width: 100%; height: auto; padding: 0px; margin: 0px; text-align: center; display: flex; justify-content: space-around;"><p>The game is simple, walk up to a tree, and tap on its icon on the map. If you're able to correctly answer the question that pops on your screen, you unlock that tree and it gets added to your inventory. All the best!</p></div>
+            
+        </div>
+        
+      <br><br><br><br>
+      <br><br><br><br>
+    
+      <div style="display:flex;justify-content:center;align-items:center;margin:0;text-align:center;flex-wrap:wrap;">This was a submission for the &nbsp <a href="https://intranet.cb.amrita.edu/events/2022/amrita-green-hackathon" style="color: yellow" target="_blank"> 2022 Amrita Green Hackathon</a>&nbsp created by Nandhakumar, Rishi, Shriram and Rohith</div>
+      
+      </div>
   </body>
 
 </html>

@@ -1,0 +1,253 @@
+/* BODY CONTAINER */
+#container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#containerSquare {
+  --size1: 120vw;
+  --size2: 120vh;
+  --size: max(var(--size1), var(--size2));
+  pointer-events: none;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.15);
+
+  position: absolute;
+  top: calc(0.5 * var(--size));
+  left: calc(0.5 * var(--size));
+
+  height: var(--size);
+  width: var(--size);
+  transform: translate(calc(-0.5 * var(--size)), calc(-0.5 * var(--size)));
+}
+/* bird */
+.bird {
+  --x1: 110%;
+  --y1: 100%;
+
+  --x2: =10%;
+  --y2: 0%;
+
+  --direction: 0deg;
+
+  position: absolute;
+  z-index: 10;
+  height: 50px;
+  width: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  touch-action: none;
+  transform: rotate(var(--direction));
+  animation: fly 2s forwards cubic-bezier(0.4, 0, 1, 1);
+}
+@keyframes fly {
+  0% {
+    left: 120%;
+    top: var(--y1);
+  }
+  100% {
+    left: -20%;
+    top: var(--y2);
+  }
+}
+
+/* MAP CONTAINER */
+
+#mapContainer {
+  height: 100%;
+  overflow: hidden;
+}
+
+#mapContainer.shake {
+  animation: shake 100ms;
+  animation-iteration-count: 5;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+#map {
+  height: calc(100% + 23px);
+}
+.gm-style-iw-d {
+  color: black;
+}
+
+/* INSIDE MAP IFRAME */
+#userPrompt {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+#userPrompt.active {
+  display: block;
+}
+/* QUESTION CARD */
+#userPrompt .content {
+  width: 100%;
+  min-height: 250px;
+  max-height: 55%;
+  position: absolute;
+
+  bottom: -100%;
+  left: 0;
+
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 30px;
+
+  background-size: 400% 400%;
+  animation: lavalamp 10s ease infinite;
+  background-image: linear-gradient(
+    320deg,
+    rgb(55 112 65 / 80%),
+    rgb(233 254 109 / 70%),
+    #5dbc48,
+    rgb(207 241 99 / 80%),
+    rgb(33 56 37 / 80%)
+  );
+
+  transition: bottom 200ms;
+}
+
+@keyframes lavalamp {
+  0% {
+    background-position: 20% 50%;
+  }
+  50% {
+    background-position: 80% 50%;
+  }
+  100% {
+    background-position: 20% 50%;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#userPrompt .content.active {
+  /*   top:auto !important; */
+  bottom: 1%;
+  transition: bottom 200ms;
+}
+
+#userPrompt .content::-webkit-scrollbar {
+  width: 3px;
+}
+#userPrompt .content::-webkit-scrollbar-track {
+  margin-top: 20px;
+  background: transparent;
+}
+#userPrompt .content::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+#quiz {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 5px;
+
+  width: 98%;
+  padding-left: 2%;
+}
+
+#options {
+  padding: 5px;
+  padding-bottom: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+
+#options > span {
+  position: relative;
+
+  font-size: 1.25rem;
+  line-height: 1.75;
+  padding-left: 33px;
+
+  padding-right: 3px;
+  border: 2px solid white;
+  border-radius: 10px;
+
+  min-width: 50% !important;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: capitalize;
+  transition: 0s 125ms;
+}
+
+#options > span:before {
+  content: " " attr(abcd) " ";
+  text-transform: uppercase;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+
+  font-size: 1.1rem;
+  height: 1.4rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: yellowgreen;
+  color: black;
+}
+
+#options > span:active {
+  border: 2px solid black;
+  transition: 0s;
+}
+
+#userPrompt .topbar {
+  --h: 3rem;
+  --m: 5px;
+  height: var(--h);
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: var(--m);
+  left: 0;
+
+  display: grid;
+  padding-left: var(--m);
+  padding-right: var(--m);
+  justify-content: end;
+}
+
+#container .topbar .iconDiv {
+  background-color: #323232;
+  border-radius: 15px;
+  height: 100%;
+  width: var(--h);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#container .topbar i {
+  font-size: calc(3 * var(--h) / 5);
+}
